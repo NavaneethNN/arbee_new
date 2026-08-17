@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    // ESLint runs separately in CI — skip during Next.js build to avoid version conflicts
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
-        // Cloudflare R2 public CDN
         protocol: "https",
         hostname: "pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev",
         port: "",
@@ -11,8 +14,6 @@ const nextConfig = {
       },
     ],
   },
-
-  // Suppress jose Edge Runtime warnings (jose is only used in Node.js routes, not Edge)
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {

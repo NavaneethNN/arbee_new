@@ -1,0 +1,103 @@
+// Prisma schema for Arbee Constructions
+// Database: Neon PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── projects ────────────────────────────────────────────────────────────────
+// Categories: Residential | Commercial | Industrial | Assembly Building |
+//             Hotel | Interior Designs | Private Dwelling
+// Status:     completed | ongoing
+model Project {
+  id             Int            @id @default(autoincrement())
+  name           String         @db.VarChar(255)
+  description    String         @db.Text
+  highlights     String         @db.Text    // newline-separated bullet points
+  projectDetails String         @map("project_details") @db.Text
+  completion     String         @db.VarChar(100)  // e.g. "Completed 2022" / "ongoing"
+  category       String         @db.VarChar(50)
+  status         ProjectStatus
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz()
+
+  images         ProjectImage[]
+
+  @@map("projects")
+}
+
+enum ProjectStatus {
+  completed
+  ongoing
+
+  @@map("project_status")
+}
+
+// ─── project_images ───────────────────────────────────────────────────────────
+// projectId NULL  → standalone gallery image
+// projectId SET   → image belongs to a project (also shown in gallery)
+model ProjectImage {
+  id           Int      @id @default(autoincrement())
+  projectId    Int?     @map("project_id")
+  imagePath    String   @map("image_path") @db.VarChar(255)
+  displayOrder Int      @default(0) @map("display_order")
+
+  project      Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_images")
+}
+
+// ─── blogs ────────────────────────────────────────────────────────────────────
+// Categories: General | Company News | Construction Tips |
+//             Industry News | Project Updates | Sustainability
+// Status:     draft | published
+model Blog {
+  id            Int        @id @default(autoincrement())
+  title         String     @db.VarChar(255)
+  slug          String     @unique @db.VarChar(255)
+  excerpt       String?    @db.Text
+  content       String?    @db.Text        // Markdown
+  featuredImage String?    @map("featured_image") @db.VarChar(500)
+  category      String     @default("General") @db.VarChar(100)
+  author        String     @default("Arbee Structures") @db.VarChar(100)
+  status        BlogStatus @default(draft)
+  views         Int        @default(0)
+  createdAt     DateTime   @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt     DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@map("blogs")
+}
+
+enum BlogStatus {
+  draft
+  published
+
+  @@map("blog_status")
+}
+
+// ─── contact_submissions ──────────────────────────────────────────────────────
+// Status: new | read | replied
+model ContactSubmission {
+  id        Int           @id @default(autoincrement())
+  name      String        @db.VarChar(255)
+  email     String        @db.VarChar(255)
+  mobile    String        @db.VarChar(50)
+  message   String?       @db.Text
+  status    ContactStatus @default(new)
+  createdAt DateTime      @default(now()) @map("created_at") @db.Timestamptz()
+
+  @@map("contact_submissions")
+}
+
+enum ContactStatus {
+  new
+  read
+  replied
+
+  @@map("contact_status")
+}

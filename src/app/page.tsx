@@ -7,6 +7,8 @@ import ServicesSection from "@/components/home/ServicesSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import ContactSection from "@/components/home/ContactSection";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   return (
     <>

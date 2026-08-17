@@ -169,11 +169,11 @@ export default function Navbar() {
       {/* Mobile menu drawer */}
       <div
         className={`fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white z-50 shadow-2xl
-          transition-transform duration-300 ease-in-out md:hidden
+          flex flex-col transition-transform duration-300 ease-in-out md:hidden
           ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         {/* Drawer header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 flex-shrink-0">
           <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
             <div className="relative w-8 h-8">
               <Image src="https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/logo.png" alt="Arbee" fill className="object-contain" sizes="32px" />
@@ -185,8 +185,8 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Nav links — scrollable */}
-        <div className="overflow-y-auto h-[calc(100%-140px)] py-3 px-3">
+        {/* Nav links — scrollable, fills remaining space */}
+        <div className="flex-1 overflow-y-auto py-3 px-3">
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label} className="mb-1">
@@ -223,7 +223,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA pinned at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100 bg-white">
+        <div className="flex-shrink-0 p-4 border-t border-gray-100 bg-white">
           <Link
             href="/#contact"
             onClick={() => setMobileOpen(false)}

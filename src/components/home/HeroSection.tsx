@@ -73,7 +73,7 @@ export default function HeroSection() {
 
           {/* Trust chips */}
           <div
-            className="flex flex-wrap items-center gap-3"
+            className="flex flex-nowrap items-center gap-2"
             data-reveal="fade-up"
             data-delay="400"
           >
@@ -84,9 +84,9 @@ export default function HeroSection() {
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-xs font-semibold px-3.5 py-2 rounded-full"
+                className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-xs font-semibold px-2.5 py-1.5 rounded-full whitespace-nowrap"
               >
-                <Icon size={13} className="text-brand-green" />
+                <Icon size={12} className="text-brand-green flex-shrink-0" />
                 {label}
               </div>
             ))}

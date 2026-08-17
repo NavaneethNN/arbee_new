@@ -1,14 +1,16 @@
-export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET(
-  _req: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+export const dynamic = "force-dynamic";
+
+type Params = { params: Promise<{ slug: string }> };
+
+export async function GET(_req: NextRequest, { params }: Params) {
+  const { slug } = await params;
+
   try {
     const blog = await prisma.blog.findUnique({
-      where: { slug: params.slug },
+      where: { slug },
     });
 
     if (!blog || blog.status !== "published") {

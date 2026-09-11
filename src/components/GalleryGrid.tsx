@@ -78,7 +78,7 @@ export default function GalleryGrid({ images }: { images: GalleryImage[] }) {
 
   return (
     /* No data-reveal here — gallery images manage their own visibility */
-    <div className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
+    <div className="columns-1 xs:columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-3">
       {images.map((img) => (
         <GalleryItem key={img.id} img={img} />
       ))}

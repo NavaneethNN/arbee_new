@@ -14,8 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/gallery` },
   openGraph: {
     title: "Project Gallery | Arbee Constructions",
-    description:
-      "Browse our complete construction portfolio — residential homes, commercial complexes, industrial facilities, and interior designs.",
+    description: "Browse our complete construction portfolio — residential homes, commercial complexes, industrial facilities, and interior designs.",
     url: `${BASE}/gallery`,
     images: [{ url: `${R2}/images/completed.jpeg`, width: 1200, height: 630, alt: "Arbee Constructions Gallery" }],
   },
@@ -35,7 +34,6 @@ export default async function GalleryPage() {
     },
   });
 
-  // Deduplicate by imagePath
   const seen = new Set<string>();
   const uniqueImages = images.filter((img) => {
     if (seen.has(img.imagePath)) return false;
@@ -44,36 +42,22 @@ export default async function GalleryPage() {
   });
 
   return (
-    <div className="pt-16" style={{ paddingTop: "72px" }}>
+    <div style={{ paddingTop: "64px" }}>
+
       {/* Hero */}
       <section className="page-hero-lg">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/completed.jpeg')" }}
+          style={{ backgroundImage: `url('${R2}/images/completed.jpeg')` }}
         />
         <div className="absolute inset-0 hero-overlay" />
-        <div className="relative z-10 container-section w-full py-16">
-          <span
-            className="section-label"
-            style={{ color: "#1DA841" }}
-            data-reveal="fade-up"
-          >
-            Our Work
-          </span>
-          <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-white max-w-2xl leading-tight mt-1"
-            data-reveal="fade-up"
-            data-delay="100"
-          >
+        <div className="relative z-10 container-section w-full py-12">
+          <span className="section-label" style={{ color: "#1DA841" }} data-reveal="fade-up">Our Work</span>
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white max-w-2xl leading-tight mt-1" data-reveal="fade-up" data-delay="100">
             Project Gallery
           </h1>
-          <p
-            className="text-white/75 mt-3 text-sm md:text-base max-w-xl"
-            data-reveal="fade-up"
-            data-delay="200"
-          >
-            Explore our portfolio of completed construction projects across
-            Coimbatore and Tamil Nadu.
+          <p className="text-white/75 mt-2 text-sm sm:text-base max-w-xl" data-reveal="fade-up" data-delay="200">
+            Explore our portfolio of completed construction projects across Coimbatore and Tamil Nadu.
           </p>
         </div>
       </section>
@@ -90,7 +74,7 @@ export default async function GalleryPage() {
         </div>
       </div>
 
-      {/* Gallery grid — client component handles image reveal */}
+      {/* Gallery grid */}
       <section className="section-padding bg-white">
         <div className="container-section">
           <GalleryGrid images={uniqueImages} />
@@ -98,19 +82,12 @@ export default async function GalleryPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand py-14">
+      <section className="bg-brand py-12">
         <div className="container-section text-center">
-          <h2
-            className="text-2xl md:text-3xl font-black text-white mb-3"
-            data-reveal="fade-up"
-          >
+          <h2 className="text-xl sm:text-2xl font-black text-white mb-2" data-reveal="fade-up">
             Inspired by Our Work?
           </h2>
-          <p
-            className="text-purple-200 mb-7 max-w-lg mx-auto text-sm md:text-base"
-            data-reveal="fade-up"
-            data-delay="150"
-          >
+          <p className="text-purple-200 mb-6 max-w-lg mx-auto text-sm" data-reveal="fade-up" data-delay="150">
             Let&apos;s discuss your project and create something extraordinary together.
           </p>
           <div data-reveal="fade-up" data-delay="250">

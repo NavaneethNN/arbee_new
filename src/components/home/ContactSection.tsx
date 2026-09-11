@@ -67,20 +67,20 @@ export default function ContactSection() {
     <section id="contact" className="section-padding bg-white">
       <div className="container-section">
         {/* Header */}
-        <div className="text-center mb-12" data-reveal="fade-up">
+        <div className="text-center mb-10" data-reveal="fade-up">
           <span className="section-label">Contact Us</span>
           <h2 className="section-heading">
             Let&apos;s Build Something{" "}
             <span className="text-brand">Amazing Together</span>
           </h2>
-          <p className="section-sub mt-3 max-w-xl mx-auto">
+          <p className="section-sub mt-2 max-w-xl mx-auto">
             Ready to start your project? Contact us today for a free
             consultation on your construction needs.
           </p>
         </div>
 
-        {/* Info cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        {/* Info cards — stacked on mobile, 3 cols on sm+ */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
           {infoCards.map((c, i) => {
             const Icon = c.icon;
             return (
@@ -89,12 +89,12 @@ export default function ContactSection() {
                 href={c.href}
                 target={c.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 bg-gray-50 border border-gray-100 rounded-2xl p-5 hover:border-brand/20 hover:shadow-md transition-all card-hover"
+                className="group flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl p-4 hover:border-brand/20 hover:shadow-md transition-all"
                 data-reveal="fade-up"
                 data-delay={String(i * 100 + 100)}
               >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${c.color} group-hover:scale-110 transition-transform`}>
-                  <Icon size={20} />
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${c.color} group-hover:scale-110 transition-transform`}>
+                  <Icon size={18} />
                 </div>
                 <div className="min-w-0">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{c.label}</p>
@@ -107,29 +107,30 @@ export default function ContactSection() {
 
         {/* Form card */}
         <div className="max-w-2xl mx-auto" data-reveal="fade-up" data-delay="200">
-          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 md:p-10">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5 sm:p-8">
+            <h3 className="text-lg font-bold text-gray-900 mb-5">Send us a Message</h3>
 
             {status === "success" && (
-              <div className="flex items-start gap-3 bg-green-50 border border-green-200 text-green-800 rounded-xl px-4 py-3 mb-6">
-                <CheckCircle2 size={17} className="mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-3 bg-green-50 border border-green-200 text-green-800 rounded-xl px-4 py-3 mb-5">
+                <CheckCircle2 size={16} className="mt-0.5 flex-shrink-0" />
                 <p className="text-sm font-medium">
-                  Request submitted successfully! We&apos;ll contact you shortly.
+                  Request submitted! We&apos;ll contact you shortly.
                 </p>
               </div>
             )}
             {status === "error" && (
-              <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-6">
-                <AlertCircle size={17} className="mt-0.5 flex-shrink-0" />
+              <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-5">
+                <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
                 <p className="text-sm font-medium">Submission failed. Please try again.</p>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {/* Name + Email — stack on mobile, 2 cols on sm+ */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                    Your Name <span className="text-red-500">*</span>
+                    Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -142,7 +143,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                    Email Address <span className="text-red-500">*</span>
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -157,7 +158,7 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                  Phone / Mobile <span className="text-red-500">*</span>
+                  Mobile <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -171,13 +172,13 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                  Your Message
+                  Message
                 </label>
                 <textarea
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Briefly describe your project, timeline or questions..."
+                  placeholder="Briefly describe your project or questions..."
                   className="input-field resize-none"
                 />
               </div>
@@ -185,7 +186,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="btn-primary w-full py-4 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="btn-primary w-full py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === "loading" ? (
                   <>
@@ -198,7 +199,7 @@ export default function ContactSection() {
                 ) : (
                   <>
                     Get in Touch
-                    <ArrowRight size={16} />
+                    <ArrowRight size={15} />
                   </>
                 )}
               </button>

@@ -30,32 +30,32 @@ body {
 ═══════════════════════════════════════════════════════ */
 @layer components {
   .section-label {
-    @apply inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-brand-green mb-3;
+    @apply inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-brand-green mb-2;
   }
   .section-heading {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight;
   }
   .section-sub {
-    @apply text-base md:text-lg text-gray-500 leading-relaxed;
+    @apply text-sm sm:text-base text-gray-500 leading-relaxed;
   }
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 bg-brand text-white font-semibold
-           px-6 py-3 text-sm md:px-7 md:py-3.5 md:text-base rounded-xl
+           px-5 py-3 text-sm rounded-xl
            hover:bg-brand-dark active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg;
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 border-2 border-brand text-brand font-semibold
-           px-6 py-3 text-sm md:px-7 md:py-3.5 md:text-base rounded-xl
+           px-5 py-3 text-sm rounded-xl
            hover:bg-brand hover:text-white active:scale-95 transition-all duration-200;
   }
   .btn-green {
     @apply inline-flex items-center justify-center gap-2 bg-brand-green text-white font-semibold
-           px-6 py-3 text-sm md:px-7 md:py-3.5 md:text-base rounded-xl
+           px-5 py-3 text-sm rounded-xl
            hover:bg-brand-green-dark active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg;
   }
   .btn-ghost-white {
     @apply inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white font-semibold
-           px-6 py-3 text-sm md:px-7 md:py-3.5 md:text-base rounded-xl
+           px-5 py-3 text-sm rounded-xl
            hover:bg-white/15 active:scale-95 transition-all duration-200;
   }
   .card {
@@ -69,7 +69,7 @@ body {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 md:py-20;
   }
   .input-field {
     @apply w-full px-4 py-3 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400
@@ -78,11 +78,11 @@ body {
   }
   .page-hero {
     @apply relative flex items-center overflow-hidden;
-    min-height: 280px;
+    min-height: 240px;
   }
   .page-hero-lg {
     @apply relative flex items-center overflow-hidden;
-    min-height: 360px;
+    min-height: 280px;
   }
 }
 
@@ -159,7 +159,6 @@ body {
   100% { opacity: 0; transform: scale(1.04); pointer-events: none; }
 }
 
-/* Logo pulse inside preloader */
 .preloader-logo {
   animation: preloaderPulse 1.4s ease-in-out infinite;
 }
@@ -168,7 +167,6 @@ body {
   50%       { opacity: 0.75; transform: scale(0.96); }
 }
 
-/* Dots bar */
 .preloader-dots {
   display: flex;
   gap: 8px;
@@ -191,11 +189,8 @@ body {
 
 /* ═══════════════════════════════════════════════════════
    ██████████  SCROLL REVEAL ANIMATIONS  ██████████
-   All animations start hidden; the [data-reveal].is-visible
-   class is added by IntersectionObserver in ScrollReveal.tsx
 ═══════════════════════════════════════════════════════ */
 
-/* Base hidden state */
 [data-reveal] {
   opacity: 0;
   will-change: opacity, transform;
@@ -204,13 +199,11 @@ body {
     transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Visible state — added by JS */
 [data-reveal].is-visible {
   opacity: 1 !important;
   transform: none !important;
 }
 
-/* ── Directions ── */
 [data-reveal="fade-up"]    { transform: translateY(36px); }
 [data-reveal="fade-down"]  { transform: translateY(-28px); }
 [data-reveal="fade-left"]  { transform: translateX(36px); }
@@ -219,7 +212,6 @@ body {
 [data-reveal="zoom-in"]    { transform: scale(0.92); }
 [data-reveal="zoom-fade"]  { transform: scale(0.95) translateY(20px); }
 
-/* ── Stagger delays via data-delay ── */
 [data-delay="100"] { transition-delay: 0.10s; }
 [data-delay="150"] { transition-delay: 0.15s; }
 [data-delay="200"] { transition-delay: 0.20s; }
@@ -230,11 +222,9 @@ body {
 [data-delay="500"] { transition-delay: 0.50s; }
 [data-delay="600"] { transition-delay: 0.60s; }
 
-/* ── Faster/slower durations ── */
 [data-duration="fast"]   { transition-duration: 0.40s; }
 [data-duration="slow"]   { transition-duration: 0.90s; }
 
-/* ── Respect reduce-motion preference ── */
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1 !important;
@@ -248,7 +238,6 @@ body {
    ██████████  GALLERY IMAGE REVEAL  ██████████
 ═══════════════════════════════════════════════════════ */
 
-/* Skeleton shimmer */
 @keyframes shimmer {
   0%   { background-position: -800px 0; }
   100% { background-position:  800px 0; }

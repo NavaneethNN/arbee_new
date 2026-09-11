@@ -24,55 +24,55 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-200">
       {/* Top CTA strip */}
-      <div className="bg-gradient-to-r from-brand to-brand-dark py-12">
-        <div className="container-section flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-brand to-brand-dark py-10">
+        <div className="container-section flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-brand-green mb-1">
               Start Your Project
             </p>
-            <h3 className="text-xl md:text-2xl font-black text-white">
+            <h3 className="text-lg sm:text-xl font-black text-white">
               Ready to Build Your Dream?
             </h3>
             <p className="text-purple-200 mt-1 text-sm">
               Get a free consultation from our expert engineering team today.
             </p>
           </div>
-          <Link href="/#contact" className="btn-green flex-shrink-0">
+          <Link href="/#contact" className="btn-green flex-shrink-0 w-full sm:w-auto">
             Get Free Consultation
-            <ArrowRight size={16} />
+            <ArrowRight size={15} />
           </Link>
         </div>
       </div>
 
       {/* Main footer body */}
-      <div className="container-section py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Col 1 — Brand */}
-          <div className="sm:col-span-2 lg:col-span-1" data-reveal="fade-up" data-delay="0">
-            <Link href="/" className="flex items-center gap-3 mb-5">
-              <div className="relative w-11 h-11 flex-shrink-0">
+      <div className="container-section py-10 sm:py-14">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
+
+          {/* Col 1 — Brand — full width on mobile */}
+          <div className="col-span-2 lg:col-span-1" data-reveal="fade-up" data-delay="0">
+            <Link href="/" className="flex items-center gap-3 mb-4">
+              <div className="relative w-10 h-10 flex-shrink-0">
                 <Image
                   src="https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/logo.png"
                   alt="Arbee Constructions"
                   fill
                   className="object-contain"
-                  sizes="44px"
+                  sizes="40px"
                 />
               </div>
               <div>
-                <div className="text-lg font-black text-brand tracking-wide leading-none">
+                <div className="text-base font-black text-brand tracking-wide leading-none">
                   ARBEE
                 </div>
-                <div className="text-xs font-bold tracking-widest text-brand-green uppercase leading-tight mt-0.5">
+                <div className="text-[10px] font-bold tracking-widest text-brand-green uppercase leading-tight mt-0.5">
                   CONSTRUCTIONS
                 </div>
               </div>
             </Link>
 
-            <p className="text-sm text-gray-500 leading-relaxed mb-6">
-              From the first brick laid to the final coat of paint, we craft
-              your dreams. Over 25 years of proven engineering excellence and
-              unwavering reliability.
+            <p className="text-sm text-gray-500 leading-relaxed mb-5">
+              From the first brick to the final coat of paint, we craft your
+              dreams. Over 25 years of proven engineering excellence.
             </p>
 
             {/* Social icons */}
@@ -104,18 +104,18 @@ export default function Footer() {
 
           {/* Col 2 — Quick Links */}
           <div data-reveal="fade-up" data-delay="100">
-            <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest mb-5">
+            <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4">
               Quick Links
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-2 text-sm text-gray-500 hover:text-brand transition-colors group"
+                    className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand transition-colors group"
                   >
                     <ArrowRight
-                      size={12}
+                      size={11}
                       className="text-brand-green opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all flex-shrink-0"
                     />
                     {link.label}
@@ -127,18 +127,18 @@ export default function Footer() {
 
           {/* Col 3 — Services */}
           <div data-reveal="fade-up" data-delay="200">
-            <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest mb-5">
+            <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4">
               Services
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {services.map((s) => (
                 <li key={s}>
                   <Link
                     href="/#services"
-                    className="flex items-center gap-2 text-sm text-gray-500 hover:text-brand transition-colors group"
+                    className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand transition-colors group"
                   >
                     <ArrowRight
-                      size={12}
+                      size={11}
                       className="text-brand-green opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all flex-shrink-0"
                     />
                     {s}
@@ -148,24 +148,24 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 4 — Contact */}
-          <div data-reveal="fade-up" data-delay="300">
-            <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest mb-5">
+          {/* Col 4 — Contact — full width on mobile */}
+          <div className="col-span-2 sm:col-span-1" data-reveal="fade-up" data-delay="300">
+            <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4">
               Contact
             </h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin size={13} className="text-brand" />
+            <ul className="space-y-3.5">
+              <li className="flex items-start gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin size={12} className="text-brand" />
                 </div>
                 <span className="text-sm text-gray-500 leading-relaxed">
                   B-11, Thirumalai Garden, Pattanam Road,<br />
                   Vellalore, Coimbatore 641111
                 </span>
               </li>
-              <li className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0">
-                  <Phone size={13} className="text-brand" />
+              <li className="flex items-start gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0">
+                  <Phone size={12} className="text-brand" />
                 </div>
                 <div>
                   <a href="tel:+919842238001" className="block text-sm text-gray-500 hover:text-brand transition-colors">
@@ -176,9 +176,9 @@ export default function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0">
-                  <Mail size={13} className="text-brand" />
+              <li className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0">
+                  <Mail size={12} className="text-brand" />
                 </div>
                 <a
                   href="mailto:contact@arbeeconstructions.com"
@@ -187,9 +187,9 @@ export default function Footer() {
                   contact@arbeeconstructions.com
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0">
-                  <Clock size={13} className="text-brand" />
+              <li className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-brand/8 flex items-center justify-center flex-shrink-0">
+                  <Clock size={12} className="text-brand" />
                 </div>
                 <span className="text-sm text-gray-500">Mon–Fri: 8:00 – 18:00</span>
               </li>
@@ -198,17 +198,17 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Divider */}
+      {/* Bottom bar */}
       <div className="border-t border-gray-100">
-        <div className="container-section py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="container-section py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <p className="text-xs text-gray-400">
             © 2026 Arbee Constructions. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Link href="/privacy" className="text-xs text-gray-400 hover:text-brand transition-colors">
               Privacy Policy
             </Link>
-            <span className="text-gray-200">|</span>
+            <span className="text-gray-300">|</span>
             <Link href="/terms" className="text-xs text-gray-400 hover:text-brand transition-colors">
               Terms &amp; Conditions
             </Link>

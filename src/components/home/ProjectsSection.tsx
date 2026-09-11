@@ -14,28 +14,27 @@ export default async function ProjectsSection() {
     <section id="projects" className="section-padding bg-white">
       <div className="container-section">
         {/* Header */}
-        <div
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14"
-          data-reveal="fade-up"
-        >
-          <div>
-            <span className="section-label">Our Work</span>
-            <h2 className="section-heading">
-              Featured <span className="text-brand">Projects</span>
-            </h2>
-            <p className="section-sub mt-3 max-w-xl">
-              Discover our portfolio of excellence in construction — from
-              landmark completions to exciting works in progress.
-            </p>
+        <div className="mb-10" data-reveal="fade-up">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+              <span className="section-label">Our Work</span>
+              <h2 className="section-heading">
+                Featured <span className="text-brand">Projects</span>
+              </h2>
+              <p className="section-sub mt-2 max-w-xl">
+                Discover our portfolio of excellence — from landmark completions
+                to exciting works in progress.
+              </p>
+            </div>
+            <Link href="/projects/completed" className="btn-outline self-start sm:self-auto flex-shrink-0">
+              View All
+              <ArrowRight size={15} />
+            </Link>
           </div>
-          <Link href="/projects/completed" className="btn-outline flex-shrink-0">
-            View All Projects
-            <ArrowRight size={16} />
-          </Link>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {projects.map((p, i) => (
             <div
               key={p.id}

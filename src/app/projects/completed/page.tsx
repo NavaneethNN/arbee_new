@@ -37,17 +37,18 @@ export default async function CompletedProjectsPage() {
   const categories = Array.from(new Set(projects.map((p) => p.category)));
 
   return (
-    <div className="pt-16" style={{ paddingTop: "72px" }}>
+    <div style={{ paddingTop: "64px" }}>
+
       {/* Hero */}
       <section className="page-hero-lg">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/completed_cover.jpg')" }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${R2}/images/completed_cover.jpg')` }} />
         <div className="absolute inset-0 hero-overlay" />
-        <div className="relative z-10 container-section w-full py-16">
+        <div className="relative z-10 container-section w-full py-12">
           <span className="section-label" style={{ color: "#1DA841" }}>Our Portfolio</span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white max-w-2xl leading-tight mt-1">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white max-w-2xl leading-tight mt-1">
             Completed Projects
           </h1>
-          <p className="text-white/75 mt-3 text-sm md:text-base max-w-xl">
+          <p className="text-white/75 mt-2 text-sm sm:text-base max-w-xl">
             Showcasing our portfolio of successfully delivered construction projects.
           </p>
         </div>
@@ -64,17 +65,19 @@ export default async function CompletedProjectsPage() {
 
       {/* Stats strip */}
       <div className="bg-white border-b border-gray-100">
-        <div className="container-section py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="container-section py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="text-gray-600 text-sm">
             Showing <span className="font-bold text-gray-900">{projects.length}</span> completed projects
           </p>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <span key={cat} className="badge bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full font-medium">
-                {cat}
-              </span>
-            ))}
-          </div>
+          {categories.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <span key={cat} className="badge bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full font-medium">
+                  {cat}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -82,9 +85,9 @@ export default async function CompletedProjectsPage() {
       <section className="section-padding bg-white">
         <div className="container-section">
           {projects.length === 0 ? (
-            <div className="text-center py-20 text-gray-400">No completed projects found.</div>
+            <div className="text-center py-20 text-gray-400 text-sm">No completed projects found.</div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {projects.map((p, i) => (
                 <div key={p.id} data-reveal="fade-up" data-delay={String((i % 3) * 100)}>
                   <ProjectCard
@@ -104,15 +107,15 @@ export default async function CompletedProjectsPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand py-14">
+      <section className="bg-brand py-12">
         <div className="container-section text-center">
-          <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Want to Discuss Your Project?</h2>
-          <p className="text-purple-200 mb-7 max-w-lg mx-auto text-sm md:text-base">
+          <h2 className="text-xl sm:text-2xl font-black text-white mb-2">Want to Discuss Your Project?</h2>
+          <p className="text-purple-200 mb-6 max-w-lg mx-auto text-sm">
             Our team is ready to bring your construction vision to life.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/#contact" className="btn-green">Get Free Consultation</Link>
-            <Link href="/projects/ongoing" className="btn-ghost-white">See Ongoing Projects</Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href="/#contact" className="btn-green w-full sm:w-auto">Get Free Consultation</Link>
+            <Link href="/projects/ongoing" className="btn-ghost-white w-full sm:w-auto">See Ongoing Projects</Link>
           </div>
         </div>
       </section>

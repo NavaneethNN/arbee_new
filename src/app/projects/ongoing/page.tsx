@@ -36,17 +36,18 @@ export default async function OngoingProjectsPage() {
   });
 
   return (
-    <div className="pt-16" style={{ paddingTop: "72px" }}>
+    <div style={{ paddingTop: "64px" }}>
+
       {/* Hero */}
       <section className="page-hero-lg">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/home.jpeg')" }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${R2}/images/home.jpeg')` }} />
         <div className="absolute inset-0 hero-overlay" />
-        <div className="relative z-10 container-section w-full py-16">
+        <div className="relative z-10 container-section w-full py-12">
           <span className="section-label" style={{ color: "#1DA841" }}>In Progress</span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white max-w-2xl leading-tight mt-1">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white max-w-2xl leading-tight mt-1">
             Ongoing Projects
           </h1>
-          <p className="text-white/75 mt-3 text-sm md:text-base max-w-xl">
+          <p className="text-white/75 mt-2 text-sm sm:text-base max-w-xl">
             Our current construction projects actively in progress.
           </p>
         </div>
@@ -66,19 +67,17 @@ export default async function OngoingProjectsPage() {
         <div className="container-section">
           {projects.length === 0 ? (
             <div className="text-center py-20">
-              <HardHat size={48} className="text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-700 mb-2">No Ongoing Projects</h3>
-              <p className="text-gray-400 mb-6">All projects are currently completed. Check back soon!</p>
+              <HardHat size={44} className="text-gray-300 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-gray-700 mb-2">No Ongoing Projects</h3>
+              <p className="text-gray-400 text-sm mb-6">All projects are currently completed. Check back soon!</p>
               <Link href="/projects/completed" className="btn-primary">View Completed Projects</Link>
             </div>
           ) : (
             <>
-              <div className="mb-10">
-                <p className="text-gray-600 text-sm">
-                  Currently working on <span className="font-bold text-gray-900">{projects.length}</span> active project{projects.length > 1 ? "s" : ""}
-                </p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+              <p className="text-gray-600 text-sm mb-8">
+                Currently working on <span className="font-bold text-gray-900">{projects.length}</span> active project{projects.length > 1 ? "s" : ""}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 {projects.map((p, i) => (
                   <div key={p.id} data-reveal="fade-up" data-delay={String((i % 3) * 100)}>
                     <ProjectCard
@@ -87,9 +86,9 @@ export default async function OngoingProjectsPage() {
                       description={p.description}
                       category={p.category}
                       status={p.status}
-                    completion={p.completion}
-                    coverImage={p.images[0]?.imagePath}
-                  />
+                      completion={p.completion}
+                      coverImage={p.images[0]?.imagePath}
+                    />
                   </div>
                 ))}
               </div>
@@ -99,12 +98,12 @@ export default async function OngoingProjectsPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-brand py-16">
+      <section className="bg-brand py-12">
         <div className="container-section text-center">
-          <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
+          <h2 className="text-xl sm:text-2xl font-black text-white mb-2">
             Want to Start a New Project?
           </h2>
-          <p className="text-purple-200 mb-7 max-w-xl mx-auto">
+          <p className="text-purple-200 mb-6 max-w-xl mx-auto text-sm">
             Contact us today and let&apos;s discuss your construction needs.
           </p>
           <Link href="/#contact" className="btn-green">Get Free Consultation</Link>

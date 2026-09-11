@@ -9,26 +9,25 @@ export default function HeroSection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: "url('https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/home.jpeg')" }}
       />
-      {/* Layered overlays for depth */}
       <div className="absolute inset-0 hero-overlay" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
 
       {/* Content */}
-      <div className="relative z-10 container-section w-full pt-20 pb-24">
+      <div className="relative z-10 container-section w-full pt-24 pb-20">
         <div className="max-w-3xl">
           {/* Eyebrow pill */}
           <div
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold px-4 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] font-semibold px-3.5 py-1.5 rounded-full mb-5"
             data-reveal="fade-down"
             data-duration="fast"
           >
-            <span className="w-2 h-2 bg-brand-green rounded-full animate-pulse" />
-            Trusted by 100+ Clients · 25+ Years of Excellence
+            <span className="w-1.5 h-1.5 bg-brand-green rounded-full animate-pulse flex-shrink-0" />
+            <span>Trusted by 100+ Clients · 25+ Years of Excellence</span>
           </div>
 
           {/* Main heading */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-4"
             data-reveal="fade-up"
             data-delay="100"
           >
@@ -47,7 +46,7 @@ export default function HeroSection() {
           </h1>
 
           <p
-            className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mb-10 max-w-2xl"
+            className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed mb-8 max-w-xl"
             data-reveal="fade-up"
             data-delay="200"
           >
@@ -58,20 +57,20 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div
-            className="flex flex-col xs:flex-row sm:flex-row flex-wrap gap-3 mb-12"
+            className="flex flex-row flex-wrap gap-3 mb-10"
             data-reveal="fade-up"
             data-delay="300"
           >
-            <Link href="/#contact" className="btn-green text-base px-8 py-4">
+            <Link href="/#contact" className="btn-green">
               Get in Touch
-              <ArrowRight size={18} />
+              <ArrowRight size={16} />
             </Link>
-            <Link href="/projects/completed" className="btn-ghost-white text-base px-8 py-4">
+            <Link href="/projects/completed" className="btn-ghost-white">
               View Our Projects
             </Link>
           </div>
 
-          {/* Trust chips */}
+          {/* Trust chips — single row, no wrap */}
           <div
             className="flex flex-nowrap items-center gap-2"
             data-reveal="fade-up"
@@ -84,7 +83,7 @@ export default function HeroSection() {
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-xs font-semibold px-2.5 py-1.5 rounded-full whitespace-nowrap"
+                className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap"
               >
                 <Icon size={12} className="text-brand-green flex-shrink-0" />
                 {label}
@@ -97,10 +96,10 @@ export default function HeroSection() {
       {/* Scroll prompt */}
       <a
         href="#projects"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/50 hover:text-white/80 transition-colors z-10 group"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/50 hover:text-white/80 transition-colors z-10"
       >
-        <span className="text-[10px] font-bold tracking-widest uppercase">Scroll Down</span>
-        <ChevronDown size={18} className="animate-bounce" />
+        <span className="text-[9px] font-bold tracking-widest uppercase">Scroll</span>
+        <ChevronDown size={16} className="animate-bounce" />
       </a>
     </section>
   );

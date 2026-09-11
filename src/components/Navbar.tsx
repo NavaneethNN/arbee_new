@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 
 const projectsLinks = [
   { label: "Completed Projects", href: "/projects/completed" },
@@ -35,7 +35,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -51,7 +50,6 @@ export default function Navbar() {
     setDropdownOpen(false);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -69,30 +67,38 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ─── Top bar ─── */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           solid ? "bg-white shadow-sm border-b border-gray-100" : "bg-transparent"
         }`}
       >
         <div className="container-section">
-          <div className="flex items-center justify-between h-16 md:h-18" style={{ height: solid ? "64px" : "72px" }}>
+          <div className="flex items-center justify-between" style={{ height: "64px" }}>
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-              <div className="relative w-9 h-9 md:w-10 md:h-10">
-                <Image src="https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/logo.png" alt="Arbee Constructions" fill className="object-contain" sizes="40px" />
+            {/* ── Logo ── */}
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+              <div className="relative w-9 h-9 flex-shrink-0">
+                <Image
+                  src="https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/logo.png"
+                  alt="Arbee Constructions"
+                  fill
+                  className="object-contain"
+                  sizes="36px"
+                />
               </div>
-              <div className="hidden xs:block sm:block">
-                <div className={`text-base font-black tracking-wide leading-none transition-colors ${solid ? "text-brand" : "text-white"}`}>
+              {/* Always show wordmark — was broken by undefined `xs:` breakpoint */}
+              <div>
+                <div className={`text-sm font-black tracking-wide leading-none transition-colors ${solid ? "text-brand" : "text-white"}`}>
                   ARBEE
                 </div>
-                <div className={`text-[10px] font-bold tracking-widest uppercase leading-tight transition-colors ${solid ? "text-brand-green" : "text-green-300"}`}>
+                <div className={`text-[9px] font-bold tracking-widest uppercase leading-tight transition-colors ${solid ? "text-brand-green" : "text-green-300"}`}>
                   CONSTRUCTIONS
                 </div>
               </div>
             </Link>
 
-            {/* Desktop nav — md and up */}
+            {/* ── Desktop nav ── */}
             <nav className="hidden md:flex items-center gap-0.5">
               {navLinks.map((link) =>
                 link.children ? (
@@ -104,10 +110,13 @@ export default function Navbar() {
                       }`}
                     >
                       {link.label}
-                      <ChevronDown size={13} className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown
+                        size={13}
+                        className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                      />
                     </button>
                     {dropdownOpen && (
-                      <div className="absolute top-full left-0 mt-1.5 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-1 z-50 animate-fade-in">
+                      <div className="absolute top-full left-0 mt-1.5 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-1 z-50">
                         {link.children.map((child) => (
                           <Link
                             key={child.href}
@@ -136,7 +145,7 @@ export default function Navbar() {
               )}
             </nav>
 
-            {/* CTA + hamburger */}
+            {/* ── Right side: CTA + hamburger ── */}
             <div className="flex items-center gap-2">
               <Link
                 href="/#contact"
@@ -146,7 +155,7 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={() => setMobileOpen((p) => !p)}
-                className={`md:hidden p-2 rounded-xl transition-colors ${
+                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-colors ${
                   solid ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
                 }`}
                 aria-label="Toggle menu"
@@ -154,43 +163,60 @@ export default function Navbar() {
                 {mobileOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
             </div>
+
           </div>
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
-          onClick={() => setMobileOpen(false)}
-        />
-      )}
-
-      {/* Mobile menu drawer */}
+      {/* ─── Backdrop ─── */}
       <div
-        className={`fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white z-50 shadow-2xl
-          flex flex-col transition-transform duration-300 ease-in-out md:hidden
+        className={`fixed inset-0 z-40 bg-black/50 md:hidden transition-opacity duration-300 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* ─── Mobile drawer ─── */}
+      <div
+        className={`fixed top-0 right-0 z-50 md:hidden
+          flex flex-col bg-white shadow-2xl
+          w-[280px] max-w-[90vw] h-[100dvh]
+          transition-transform duration-300 ease-in-out
           ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         {/* Drawer header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 flex-shrink-0">
-          <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-            <div className="relative w-8 h-8">
-              <Image src="https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/logo.png" alt="Arbee" fill className="object-contain" sizes="32px" />
+        <div className="flex items-center justify-between px-5 h-16 border-b border-gray-100 flex-shrink-0">
+          <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
+            <div className="relative w-8 h-8 flex-shrink-0">
+              <Image
+                src="https://pub-e7829452e02d4285a8bad18cc480c5cf.r2.dev/images/logo.png"
+                alt="Arbee"
+                fill
+                className="object-contain"
+                sizes="32px"
+              />
             </div>
-            <span className="font-black text-brand text-sm">ARBEE CONSTRUCTIONS</span>
+            <div>
+              <div className="text-sm font-black text-brand tracking-wide leading-none">ARBEE</div>
+              <div className="text-[9px] font-bold text-brand-green tracking-widest uppercase leading-tight">CONSTRUCTIONS</div>
+            </div>
           </Link>
-          <button onClick={() => setMobileOpen(false)} className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-500">
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center justify-center w-9 h-9 rounded-xl hover:bg-gray-100 text-gray-500 transition-colors"
+            aria-label="Close menu"
+          >
             <X size={20} />
           </button>
         </div>
 
-        {/* Nav links — scrollable, fills remaining space */}
-        <div className="flex-1 overflow-y-auto py-3 px-3">
+        {/* Nav links — scrollable */}
+        <nav className="flex-1 overflow-y-auto py-2 px-3">
           {navLinks.map((link) =>
             link.children ? (
-              <div key={link.label} className="mb-1">
-                <p className="px-3 pt-3 pb-1.5 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+              <div key={link.label}>
+                {/* Projects section label */}
+                <p className="px-3 pt-4 pb-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                   Projects
                 </p>
                 {link.children.map((child) => (
@@ -198,7 +224,11 @@ export default function Navbar() {
                     key={child.href}
                     href={child.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:text-brand hover:bg-purple-50 transition-colors"
+                    className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-colors ${
+                      pathname === child.href
+                        ? "text-brand bg-purple-50"
+                        : "text-gray-600 hover:text-brand hover:bg-gray-50"
+                    }`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0" />
                     {child.label}
@@ -210,7 +240,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors mb-0.5 ${
+                className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold transition-colors ${
                   pathname === link.href
                     ? "text-brand bg-purple-50"
                     : "text-gray-700 hover:text-brand hover:bg-gray-50"
@@ -220,16 +250,17 @@ export default function Navbar() {
               </Link>
             )
           )}
-        </div>
+        </nav>
 
-        {/* CTA pinned at bottom */}
+        {/* CTA footer — always visible, never overlaps content */}
         <div className="flex-shrink-0 p-4 border-t border-gray-100 bg-white">
           <Link
             href="/#contact"
             onClick={() => setMobileOpen(false)}
-            className="btn-green w-full"
+            className="flex items-center justify-center gap-2 w-full bg-brand-green text-white font-bold py-3.5 rounded-xl hover:bg-brand-green-dark transition-colors text-sm"
           >
             Get in Touch
+            <ArrowRight size={15} />
           </Link>
         </div>
       </div>

@@ -67,7 +67,7 @@ export default function ContactSection() {
     <section id="contact" className="section-padding bg-white">
       <div className="container-section">
         {/* Header */}
-        <div className="text-center mb-10" data-reveal="fade-up">
+        <div className="text-center mb-8 sm:mb-10" data-reveal="fade-up">
           <span className="section-label">Contact Us</span>
           <h2 className="section-heading">
             Let&apos;s Build Something{" "}
@@ -80,7 +80,7 @@ export default function ContactSection() {
         </div>
 
         {/* Info cards — stacked on mobile, 3 cols on sm+ */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 sm:mb-10">
           {infoCards.map((c, i) => {
             const Icon = c.icon;
             return (
@@ -89,16 +89,16 @@ export default function ContactSection() {
                 href={c.href}
                 target={c.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl p-4 hover:border-brand/20 hover:shadow-md transition-all"
+                className="group flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl p-4 hover:border-brand/20 hover:shadow-md transition-all min-h-[64px]"
                 data-reveal="fade-up"
                 data-delay={String(i * 100 + 100)}
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${c.color} group-hover:scale-110 transition-transform`}>
                   <Icon size={18} />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">{c.label}</p>
-                  <p className="text-sm font-semibold text-gray-800 truncate">{c.value}</p>
+                  <p className="text-sm font-semibold text-gray-800 break-all sm:truncate leading-snug">{c.value}</p>
                 </div>
               </a>
             );
@@ -186,7 +186,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="btn-primary w-full py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="btn-primary w-full py-4 disabled:opacity-60 disabled:cursor-not-allowed text-base min-h-[52px]"
               >
                 {status === "loading" ? (
                   <>

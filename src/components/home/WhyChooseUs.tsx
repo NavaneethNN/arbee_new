@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
     <section id="why-choose-us" className="section-padding bg-gray-50/60">
       <div className="container-section">
         {/* Header */}
-        <div className="text-center mb-10" data-reveal="fade-up">
+        <div className="text-center mb-8 sm:mb-10" data-reveal="fade-up">
           <span className="section-label">Our Core Values</span>
           <h2 className="section-heading">
             Why Choose <span className="text-brand">Arbee?</span>
@@ -32,41 +32,41 @@ export default function WhyChooseUs() {
           </p>
         </div>
 
-        {/* Value cards — 1 col mobile, 2 col sm, 4 col lg */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-8">
+        {/* Value cards — 2 col mobile, 2 col sm, 4 col lg */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mb-6 sm:mb-8">
           {values.map((v, i) => {
             const Icon = v.icon;
             return (
               <div
                 key={v.title}
-                className="relative bg-white rounded-2xl p-5 border border-gray-100 hover:shadow-lg hover:border-brand/20 transition-all duration-300 group card-hover"
+                className="relative bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 hover:shadow-lg hover:border-brand/20 transition-all duration-300 group card-hover"
                 data-reveal="fade-up"
                 data-delay={String(i * 100)}
               >
-                <div className="absolute top-4 right-4 text-4xl font-black text-gray-50 select-none leading-none">
+                <div className="absolute top-3 right-3 text-3xl sm:text-4xl font-black text-gray-50 select-none leading-none">
                   {v.num}
                 </div>
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${v.iconBg} transition-transform duration-300 group-hover:scale-110`}>
-                  <Icon size={20} className={v.iconColor} />
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${v.iconBg} transition-transform duration-300 group-hover:scale-110`}>
+                  <Icon size={18} className={v.iconColor} />
                 </div>
-                <h3 className="font-bold text-gray-900 text-sm sm:text-base mb-2 group-hover:text-brand transition-colors">
+                <h3 className="font-bold text-gray-900 text-xs sm:text-sm mb-1.5 group-hover:text-brand transition-colors leading-snug">
                   {v.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{v.desc}</p>
+                <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed line-clamp-4">{v.desc}</p>
               </div>
             );
           })}
         </div>
 
         {/* Awards strip */}
-        <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-7 shadow-sm" data-reveal="fade-up" data-delay="200">
-          <div className="flex flex-col gap-5">
-            <div>
+        <div className="bg-white rounded-2xl border border-gray-100 p-4 sm:p-6 shadow-sm" data-reveal="fade-up" data-delay="200">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+            <div className="flex-1">
               <p className="text-xs font-bold uppercase tracking-widest text-brand-green mb-1">Recognition</p>
               <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Recognised for Excellence</h3>
               <p className="text-sm text-gray-500">Proud recipients of multiple construction quality awards across Tamil Nadu.</p>
             </div>
-            <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
               {awards.map((src, i) => (
                 <div
                   key={i}

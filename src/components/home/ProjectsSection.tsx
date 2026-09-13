@@ -14,7 +14,7 @@ export default async function ProjectsSection() {
     <section id="projects" className="section-padding bg-white">
       <div className="container-section">
         {/* Header */}
-        <div className="mb-10" data-reveal="fade-up">
+        <div className="mb-8 sm:mb-10" data-reveal="fade-up">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div>
               <span className="section-label">Our Work</span>
@@ -26,15 +26,15 @@ export default async function ProjectsSection() {
                 to exciting works in progress.
               </p>
             </div>
-            <Link href="/projects/completed" className="btn-outline self-start sm:self-auto flex-shrink-0">
-              View All
+            <Link href="/projects/completed" className="btn-outline w-full sm:w-auto justify-center sm:justify-start flex-shrink-0 py-3.5 sm:py-3 min-h-[48px] sm:min-h-0">
+              View All Projects
               <ArrowRight size={15} />
             </Link>
           </div>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {projects.map((p, i) => (
             <div
               key={p.id}

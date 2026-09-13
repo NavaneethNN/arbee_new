@@ -232,7 +232,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Preloader />
         <ScrollReveal />
         <Navbar />
-        <main>{children}</main>
+        <main className="overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>
